@@ -1,0 +1,37 @@
+Daniel Gelfand
+APCS2 pd2
+HW#09 -- Yaaasss Queens
+2018-26-18
+
+2x2: Unsolvable
+Reason: As soon as a queen is placed in any corner, it covers squares on the field,
+making it impossible to put another queen.
+
+3*3: Unsolvable
+Reason: Since this is a relatively case, trial and error can lead us to
+the fact that the 3x3 board is unsolvable. Much work can be avoided by
+seeing that placing a queen at any corner is the same as just flipping the board,
+making the outcome the same.
+
+4*4: Solvable
+Reason: After trying certain configurations, I have found one that satisfies
+the requirements for the problem. I believe there are two solutions to the problem.
+If I move my original configuration as a unit, I end up with another solution. No other movements
+can be made as a unit to stay in bounds of the chess board.
+
+5*5: Solvable
+Reason: I found a configuration that works with one queen in the corner. Moving as a unit, there can
+be at least 4 moves for a solution. Additionally, there is a move of the queens not in the corner moving as a unit.
+I believe there are about 8 solutions.
+
+6*6: Solvable
+Reason: There seems to be a solution that mimics the appearance of parallel lines. Rotating the configuration
+also provides solutions. Therefore, I believe there are 4 solutions.
+
+7*7: Solvable
+Reason: A configuration also close to parallel lines provides 4 solutions. Two more can be found by
+rotating the inner queens. I believe there are 6 solutions.
+
+8*8: Solvable
+Reason: I was able to find 4 configurations that this case is solvable. However, by trial and error this task is
+too tedious. I was say there a lot more that I did not find yet due to manipulation of different units of queens.
