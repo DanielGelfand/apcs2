@@ -10,50 +10,54 @@
 
 public class Latkes
 {
-  private String [] _stack;
+  private String[] _stack;
   private int _stackSize;
 
   //constructor
   public Latkes( int size )
   {
     _stack = new String[size];
-    _stackSize = size;
+    _stackSize = 0;
+
   }
 
   //means of insertion
   public void push( String s )
   {
-    String[] temp = new String[_stackSize + 1];
-    //push to first index
-    temp[0] = s;
 
-    for(int i = 1; i < _stackSize; i++ ){
-      //copy elements from stack
-      temp[i] = _stack[i-1];
+    //if the stack is full ignore requests to push
+    if( isFull() ){
+      return;
     }
-    //reassign
-    _stack = temp;
+    //shift elements
+    for(int i = _stackSize - 1; i >= 0 ; i--){
+      _stack[i + 1] = _stack[i];
+
+    }
+    //insert to top of stack
+    _stack[0] = s;
     _stackSize += 1;
   }
 
   //means of removal
   public String pop( )
   {
-    String[] temp = new String[_stackSize - 1];
-
-    //get element on top of stack
-    String ret = _stack[0];
-
-    for(int i = 1; i < _stackSize; i++ ){
-      //copy elements from stack
-      temp[i-1] = _stack[i];
+    //can't remove top element with an empty stack
+    if( isEmpty()){
+      return null;
     }
-    //reassign
-    _stack = temp;
-    _stackSize -= 1;
-    return ret;
-  }
 
+    //stored the element to be popped
+    String popped = _stack[0];
+
+    //shift elements
+    for(int i = 0; i < _stack.length - 1; i ++ ){
+      _stack[i] = _stack[ i + 1];
+    }
+
+    _stackSize -= 1;
+    return popped;
+  }
 
   //chk for emptiness
   public boolean isEmpty()
@@ -71,6 +75,7 @@ public class Latkes
   //main method for testing
   public static void main( String[] args )
   {
+
     Latkes tastyStack = new Latkes(10);
 
     tastyStack.push("aoo");
@@ -83,13 +88,14 @@ public class Latkes
     tastyStack.push("hoo");
     tastyStack.push("ioo");
     tastyStack.push("joo");
-    tastyStack.push("coocoo");
-    tastyStack.push("cachoo");
+    //  tastyStack.push("coocoo"); ignored
+    //tastyStack.push("cachoo"); ignored
 
     //cachoo
-    System.out.println( tastyStack.pop() );
+    //System.out.println( tastyStack.pop() );
     //coocoo
-    System.out.println( tastyStack.pop() );
+    //System.out.println( tastyStack.pop() );
+
     //joo
     System.out.println( tastyStack.pop() );
     //ioo
@@ -113,8 +119,7 @@ public class Latkes
 
     //stack empty by now; SOP(null)
     System.out.println( tastyStack.pop() );
-    /*v~~~~~~~~~~~~~~MAKE MORE~~~~~~~~~~~~~~v
-    ^~~~~~~~~~~~~~~~AWESOME~~~~~~~~~~~~~~~^*/
+
 
   }//end main()
 
