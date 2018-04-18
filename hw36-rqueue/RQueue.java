@@ -67,7 +67,8 @@ public class RQueue<T> implements Queue<T>
       //adjust the front
       _front = _front.getNext();
 
-      //sample();
+      //shuffle
+      sample();
 
       _size--;
       return dequeued;
@@ -89,10 +90,15 @@ public class RQueue<T> implements Queue<T>
   ******************************************/
   public void sample ()
   {
-    //Shuffle queue
-    for(int i = 0; i < (int) ( Math.random() * _size ); i++ ){
-      enqueue(dequeue());
-    }
+      //Shuffle queue
+      for(int i = 0; i < (int) ( Math.random() * _size ); i++ ){
+        enqueue(_front.getValue());
+        //adjust the front
+        _front = _front.getNext();
+        //Counteract enqueue size addition
+        _size--;
+
+      }
   }//end sample()
 
 
@@ -140,18 +146,26 @@ public class RQueue<T> implements Queue<T>
     System.out.println( PirateQueue ); //for testing toString()...
 
     System.out.println("\nnow dequeuing...");
-    PirateQueue.sample();
     System.out.println( PirateQueue.dequeue() );
-    PirateQueue.sample();
+    System.out.println(PirateQueue);
+
+    //  PirateQueue.sample();
     System.out.println( PirateQueue.dequeue() );
-    PirateQueue.sample();
+    System.out.println(PirateQueue);
+    //  PirateQueue.sample();
     System.out.println( PirateQueue.dequeue() );
-    PirateQueue.sample();
+    System.out.println(PirateQueue);
+    //  PirateQueue.sample();
     System.out.println( PirateQueue.dequeue() );
-    PirateQueue.sample();
+    System.out.println(PirateQueue);
+    //  PirateQueue.sample();
     System.out.println( PirateQueue.dequeue() );
-    PirateQueue.sample();
+    System.out.println(PirateQueue);
+    //  PirateQueue.sample();
+    System.out.println("error");
+    System.out.println(PirateQueue._size);
     System.out.println( PirateQueue.dequeue() );
+    System.out.println(PirateQueue);
 
     System.out.println("\nnow dequeuing fr empty queue...");
     System.out.println( PirateQueue.dequeue() );
